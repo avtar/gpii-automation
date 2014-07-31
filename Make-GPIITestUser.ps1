@@ -8,7 +8,7 @@ $logonScriptContents = @"
 cd %HOMEPATH%
 git clone https://github.com/simonbates/gpii-automation
 cd gpii-automation
-start powershell.exe -File OnLogon-GPIITestUser.ps1 -WindowStyle Normal
+start powershell.exe -File OnLogon.ps1 -WindowStyle Normal
 "@
 
 # Create our test user
