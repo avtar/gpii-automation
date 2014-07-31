@@ -2,7 +2,14 @@ $testUserName = "GPIITestUser"
 $testUserPassword = "password"
 
 $logonScriptName = "OnLogon-${testUserName}.bat"
-$logonScriptContents = "start powershell.exe -File C:\Windows\System32\Repl\Import\Scripts\OnLogon-GPIITestUser.ps1 -WindowStyle Normal"
+
+$logonScriptContents = @"
+%HOMEDRIVE%
+cd %HOMEPATH%
+git clone https://github.com/simonbates/gpii-automation
+cd gpii-automation
+start powershell.exe -File OnLogon-GPIITestUser.ps1 -WindowStyle Normal
+"@
 
 # Create our test user
 

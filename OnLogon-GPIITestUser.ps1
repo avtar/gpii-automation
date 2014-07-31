@@ -1,4 +1,4 @@
-cd C:\Users\GPIITestUser
+cd $Home
 
 # Clone and build GPII
 
