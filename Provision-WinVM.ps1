@@ -6,6 +6,9 @@ Param (
 $s = New-PSSession -ComputerName $ComputerName -Credential $Credential
 
 Invoke-Command -Session $s -ScriptBlock {
+    # Set the PowerShell ExecutionPolicy
+    Set-ExecutionPolicy RemoteSigned -Force
+
     # Add a Firewall exception for Nodejs
     netsh advfirewall firewall add rule name="Nodejs" dir=in action=allow program="C:\Program Files (x86)\nodejs\node.exe" enable=yes
 
