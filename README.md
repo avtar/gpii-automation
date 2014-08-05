@@ -21,7 +21,7 @@ Manually set up a Windows VM with:
 Provision the VM
 ----------------
 
-Start with an Windows image as described above. Then:
+Start with a Windows image as described above. Then:
 
 ```
 Provision-WinVM.ps1 <ComputerName> <Credential>
