@@ -1,0 +1,32 @@
+--- .\jqUnit-node.js.orig	Wed Aug  6 16:53:46 2014
++++ .\jqUnit-node.js	Wed Aug  6 16:34:34 2014
+@@ -64,6 +64,7 @@
+ 
+ // stolen from "colors" npm module which grubbily works by polluting global prototypes
+ colors.stylize = function (str, styles) {
++    /*
+     styles = fluid.makeArray(styles);
+   
+     var togo = str;
+@@ -72,6 +73,8 @@
+             "\u001b[" + colors.styles[styles[i]][1] + "m";
+     }
+     return togo;
++    */
++    return str;
+ };
+ 
+ var testState = {
+@@ -163,7 +166,11 @@
+     jqUnit.log("All tests concluded: " + passCount(data) + " total passed in " + data.runtime + "ms - " + passFail(data.failed));
+     jqUnit.log(separator);
+     jqUnit.onAllTestsDone.fire(data);
+-    process.exit(data.failed);  
++    // Hack to ensure that all output makes it to the calling process
++    // See https://github.com/joyent/node/issues/3584
++    process.stdout.write("", function () {
++        process.exit(data.failed);
++    });
+ }
+ /**
+  * Callback for all done tests in the file.
