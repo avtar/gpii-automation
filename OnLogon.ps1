@@ -19,6 +19,10 @@ cd ..\..
 
 rmdir -Recurse -Force node_modules\universal\node_modules\jqUnit\node_modules\infusion
 
+# Patch jqUnit-node.js
+
+& 'C:\Program Files (x86)\Git\bin\patch.exe' -u node_modules\universal\node_modules\jqUnit\lib\jqUnit-node.js $Home\gpii-automation\jqUnit-node.js.patch
+
 # Run Tests
 
 cd windows
