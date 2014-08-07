@@ -99,4 +99,5 @@ TODO
 
 * Move everything that we can move to the provisioning script -- minimize what needs to be installed by hand
 * Use the Jenkins Job Builder to configure Jenkins
+* Automate starting the Windows VM and running the Prepare-TestEnvWinVM.ps1 script from Jenkins so that running the tests is a single button push on Jenkins
 * jqUnit-node.js.patch is a temporary hack -- the proper fix is to modify jqUnit-node.js to make color optional or only if running on a tty and hopefully https://github.com/joyent/node/issues/3584 is fixed on latest Nodejs
