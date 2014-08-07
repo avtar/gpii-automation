@@ -1,5 +1,3 @@
-cd $Home
-
 # Clone and build GPII
 
 mkdir gpii
@@ -28,4 +26,4 @@ rmdir -Recurse -Force node_modules\universal\node_modules\jqUnit\node_modules\in
 cd windows
 node tests\acceptanceTests\AcceptanceTests_builtIn.js
 
-Pause
+exit $LastExitCode
