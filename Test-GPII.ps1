@@ -1,4 +1,10 @@
+Set-PSDebug -Trace 1
+
 # Clone and build GPII
+
+if (Test-Path gpii) {
+    rmdir -Recurse -Force gpii
+}
 
 mkdir gpii
 cd gpii
