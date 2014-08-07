@@ -69,7 +69,9 @@ This will be the starting point for each test run.
 Run the tests
 -------------
 
-Start up a provisioned Windows VM as described above.
+### Start up the VM
+
+Start up a Windows VM, provisioned as described above.
 
 ### Prepare the test environment
 
