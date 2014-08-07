@@ -1,3 +1,8 @@
+Param (
+    [Parameter(Mandatory=$True)] [String]$JenkinsMasterUrl,
+    [Parameter(Mandatory=$True)] [String]$JenkinsSlaveName
+)
+
 $testUserName = "GPIITestUser"
 $testUserPassword = "password"
 
@@ -7,8 +12,8 @@ $logonScriptContents = @"
 %HOMEDRIVE%
 cd %HOMEPATH%
 git clone https://github.com/simonbates/gpii-automation
-cd gpii-automation
-start powershell.exe -File OnLogon.ps1 -WindowStyle Normal
+"C:\Program Files (x86)\Git\bin\curl.exe" -O ${JenkinsMasterUrl}jnlpJars/slave.jar
+"C:\Program Files (x86)\Java\jre7\bin\java" -jar slave.jar -jnlpUrl ${JenkinsMasterUrl}computer/${JenkinsSlaveName}/slave-agent.jnlp
 "@
 
 # Create our test user

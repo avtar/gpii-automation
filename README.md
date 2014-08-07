@@ -17,6 +17,7 @@ Manually set up a Windows VM with:
 * Install Nodejs
 * Install MinGW
 * Install the Microsoft Visual C++ Redistributable Package (x86)
+* Install Java JRE 7
 
 Provision the VM
 ----------------
