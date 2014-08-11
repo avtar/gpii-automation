@@ -42,6 +42,8 @@ Set up a Windows VM with:
 * Set WinRM service startup to Automatic
 * Install Git
 * Install Nodejs
+* Update npm to version 1.4
+* Install grunt-cli
 * Install MinGW
 * Install the Microsoft Visual C++ Redistributable Package (x86)
 * Install Java JRE 7
