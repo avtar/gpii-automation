@@ -10,8 +10,8 @@ mkdir gpii
 cd gpii
 git clone https://github.com/GPII/windows.git
 cd windows
-npm install --ignore-scripts=true
-grunt build
+npm install --ignore-scripts=true --unicode=false
+grunt --no-color build
 cd ..
 
 # Patch jqUnit-node.js
