@@ -39,19 +39,27 @@ sc config WinRM start= auto
 
 See https://github.com/WinRb/vagrant-windows
 
-### Edit the firewall
+### Edit the Firewall
 
-* Edit Firewall rules to allow "Windows Remote Management" on Public networks
+* Edit the Firewall rules to allow "Windows Remote Management" on Public networks
 
 ### Package the VM
 
 ```
 vagrant package --base NAME --output GPIIWin8.box
-vagrant box add GPIIWin8 GPIIWin8.box
+vagrant box add GPIIWin8 GPIIWin8.box (optional)
 ```
 
 Set Up Jenkins
 --------------
+
+### Running Jenkins
+
+Jenkins needs to be run as a user that can start VirtualBox with a GUI. On Windows, I'm running Jenkins from the command line as a logged-in user, rather than as a service.
+
+### Install the Git Plugin
+
+* Install the Git Plugin
 
 ### Add a WindowsVM node
 
@@ -62,9 +70,49 @@ Add a new "Dumb Slave" node:
 * Usage: Leave this node for tied jobs only
 * Launch method: Launce slave agents via Java Web Start
 
+### Environment variables
+
+Set the following environment variables:
+
+* GPIIWIN8_BOX_URL = <URL to the GPIIWin8.box created above>
+* GPII_JENKINS_MASTER_URL (such as http://1.2.3.4:8080/)
+* GPII_JENKINS_SLAVE_NAME = "WindowsVM"
+
+### Add a "Prepare GPII Test Environment" job
+
+Add a "Build a free-style software project" job:
+
+* Name: Prepare GPII Test Environment
+* Restrict where this project can be run: master
+* Use custom workspace: gpii-automation
+* Source Code Management: Git
+* Repository URL: https://github.com/simonbates/gpii-automation.git
+
+For build, use a Windows batch command:
+
+```
+vagrant up
+vagrant reload
+```
+
+### Add a "Tear Down GPII Test Environment" job
+
+Add a "Build a free-style software project" job:
+
+* Name: Tear Down GPII Test Environment
+* Restrict where this project can be run: master
+* Use custom workspace: gpii-automation
+
+For build, use a Windows batch command:
+
+```
+vagrant halt
+vagrant destroy --force
+```
+
 ### Add a "Test GPII" job
 
-Add a "Build a free-style software project" job to run the tests:
+Add a "Build a free-style software project" job:
 
 * Name: Test GPII
 * Restrict where this project can be run: WindowsVM
@@ -78,35 +126,13 @@ powershell.exe -ExecutionPolicy RemoteSigned -File C:\Users\GPIITestUser\gpii-au
 Run the tests
 -------------
 
-### Configuration
-
-Set the following environment variables:
-
-* GPII_JENKINS_MASTER_URL
-* GPII_JENKINS_SLAVE_NAME
-
-### Start up the VM and prepare the test environment
-
-```
-vagrant up
-vagrant reload
-```
-
-These commands will:
-
-* Create the GPIITestUser
-* Configure a logon script for GPIITestUser and set Windows to log in to that user on startup
-* Restart the machine
-* On startup, log in GPIITestUser, and start the Jenkins slave agent
-
-### Run the tests
-
-On the master Jenkins, run the "Test GPII" job.
+* Prepare GPII Test Environment
+* Test GPII
+* Tear Down GPII Test Environment
 
 TODO
 ----
 
 * Move everything that we can move to the provisioning script -- minimize what needs to be installed by hand
 * Use the Jenkins Job Builder to configure Jenkins
-* Automate starting the Windows VM and running the Prepare-TestEnvWinVM.ps1 script from Jenkins so that running the tests is a single button push on Jenkins
 * jqUnit-node.js.patch is a temporary hack -- the proper fix is to modify jqUnit-node.js to make color optional or only if running on a tty and hopefully https://github.com/joyent/node/issues/3584 is fixed on latest Nodejs
