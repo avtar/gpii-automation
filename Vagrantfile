@@ -2,6 +2,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "GPIIWin8"
+  config.vm.box_url = ENV['GPIIWIN8_BOX_URL']
   config.vm.guest = :windows
 
   config.vm.communicator = "winrm"
