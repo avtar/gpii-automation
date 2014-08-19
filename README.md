@@ -74,7 +74,7 @@ Add a new "Dumb Slave" node:
 
 Set the following environment variables:
 
-* GPIIWIN8_BOX_URL = <URL to the GPIIWin8.box created above>
+* GPIIWIN8_BOX_URL = \<URL to the GPIIWin8.box created above\>
 * GPII_JENKINS_MASTER_URL (such as http://1.2.3.4:8080/)
 * GPII_JENKINS_SLAVE_NAME = "WindowsVM"
 
