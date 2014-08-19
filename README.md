@@ -5,6 +5,51 @@ Run the GPII automated tests in a virtual machine.
 
 Tested against Windows 8.1 64-bit in VirtualBox running on a Windows 7 host with PowerShell 4.
 
+Prepare a Vagrant VirtualBox base box
+-------------------------------------
+
+### Manual Steps
+
+Set up a VirtualBox Windows VM:
+
+* Create a vagrant user
+  * An Administrator
+  * username: vagrant
+  * password: vagrant
+* Disable UAC for the vagrant user
+* `Enable-PSRemoting -Force`
+* Install Git
+* Install Nodejs
+* Update npm to version 1.4
+* Install grunt-cli
+* Install MinGW
+* Install the Microsoft Visual C++ Redistributable Package (x86)
+* Install Java JRE 7
+
+### Configure WinRM for Vagrant
+
+```
+winrm quickconfig -q
+winrm set winrm/config/winrs @{MaxMemoryPerShellMB="512"}
+winrm set winrm/config @{MaxTimeoutms="1800000"}
+winrm set winrm/config/service @{AllowUnencrypted="true"}
+winrm set winrm/config/service/auth @{Basic="true"}
+sc config WinRM start= auto
+```
+
+See https://github.com/WinRb/vagrant-windows
+
+### Edit the firewall
+
+* Edit Firewall rules to allow "Windows Remote Management" on Public networks
+
+### Package the VM
+
+```
+vagrant package --base NAME --output GPIIWin8.box
+vagrant box add GPIIWin8 GPIIWin8.box
+```
+
 Set Up Jenkins
 --------------
 
@@ -30,64 +75,24 @@ For build, use a Windows batch command:
 powershell.exe -ExecutionPolicy RemoteSigned -File C:\Users\GPIITestUser\gpii-automation\Test-GPII.ps1
 ```
 
-Provision a Windows VM
-----------------------
-
-### Manual Steps
-
-Set up a Windows VM with:
-
-* An Administrator user
-* `Enable-PSRemoting -Force`
-* Set WinRM service startup to Automatic
-* Install Git
-* Install Nodejs
-* Update npm to version 1.4
-* Install grunt-cli
-* Install MinGW
-* Install the Microsoft Visual C++ Redistributable Package (x86)
-* Install Java JRE 7
-
-### Take a snapshot
-
-Take a snapshot here, so that you can revert to this point to re-run the provisioning script.
-
-### Run the provisioning script
-
-```
-Provision-WinVM.ps1 <ComputerName> <Credential>
-```
-
-For example:
-
-```
-Provision-WinVM.ps1 1.1.1.1 $(Get-Credential AdminUser)
-```
-
-### Take a snapshot
-
-This will be the starting point for each test run.
-
 Run the tests
 -------------
 
-### Start up the VM
+### Configuration
 
-Start up a Windows VM, provisioned as described above.
+Set the following environment variables:
 
-### Prepare the test environment
+* GPII_JENKINS_MASTER_URL
+* GPII_JENKINS_SLAVE_NAME
 
-```
-Prepare-TestEnvWinVM.ps1 <ComputerName> <Credential> <JenkinsMasterUrl> <JenkinsSlaveName>
-```
-
-For example:
+### Start up the VM and prepare the test environment
 
 ```
-Prepare-TestEnvWinVM.ps1 1.1.1.1 $(Get-Credential AdminUser) http://2.2.2.2:8080/ WindowsVM
+vagrant up
+vagrant reload
 ```
 
-This will:
+These commands will:
 
 * Create the GPIITestUser
 * Configure a logon script for GPIITestUser and set Windows to log in to that user on startup
