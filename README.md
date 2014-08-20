@@ -91,6 +91,7 @@ Add a "Build a free-style software project" job:
 For build, use a Windows batch command:
 
 ```
+cd gpii-win-8.1
 vagrant up
 vagrant reload
 ```
@@ -106,6 +107,7 @@ Add a "Build a free-style software project" job:
 For build, use a Windows batch command:
 
 ```
+cd gpii-win-8.1
 vagrant halt
 vagrant destroy --force
 ```
@@ -120,7 +122,7 @@ Add a "Build a free-style software project" job:
 For build, use a Windows batch command:
 
 ```
-powershell.exe -ExecutionPolicy RemoteSigned -File C:\Users\GPIITestUser\gpii-automation\Test-GPII.ps1
+powershell.exe -ExecutionPolicy RemoteSigned -File C:\Users\GPIITestUser\gpii-automation\gpii-win-8.1\Test-GPII.ps1
 ```
 
 Run the tests
