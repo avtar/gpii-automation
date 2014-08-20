@@ -61,11 +61,11 @@ Jenkins needs to be run as a user that can start VirtualBox with a GUI. On Windo
 
 * Install the Git Plugin
 
-### Add a WindowsVM node
+### Add a gpii-win-8.1 node
 
 Add a new "Dumb Slave" node:
 
-* Name: WindowsVM
+* Name: gpii-win-8.1
 * Remote root directory: C:\Jenkins
 * Usage: Leave this node for tied jobs only
 * Launch method: Launce slave agents via Java Web Start
@@ -76,13 +76,13 @@ Set the following environment variables:
 
 * GPII_WIN81_BOX_URL = \<URL to the gpii-win-8.1.box created above\>
 * GPII_JENKINS_MASTER_URL (such as http://1.2.3.4:8080/)
-* GPII_JENKINS_SLAVE_NAME = "WindowsVM"
+* GPII_JENKINS_SLAVE_NAME = "gpii-win-8.1"
 
-### Add a "Prepare GPII Test Environment" job
+### Add a "Set Up gpii-win-8.1" job
 
 Add a "Build a free-style software project" job:
 
-* Name: Prepare GPII Test Environment
+* Name: Set Up gpii-win-8.1
 * Restrict where this project can be run: master
 * Use custom workspace: gpii-automation
 * Source Code Management: Git
@@ -95,11 +95,11 @@ vagrant up
 vagrant reload
 ```
 
-### Add a "Tear Down GPII Test Environment" job
+### Add a "Tear Down gpii-win-8.1" job
 
 Add a "Build a free-style software project" job:
 
-* Name: Tear Down GPII Test Environment
+* Name: Tear Down gpii-win-8.1
 * Restrict where this project can be run: master
 * Use custom workspace: gpii-automation
 
@@ -110,12 +110,12 @@ vagrant halt
 vagrant destroy --force
 ```
 
-### Add a "Test GPII" job
+### Add a "Test gpii-win-8.1" job
 
 Add a "Build a free-style software project" job:
 
-* Name: Test GPII
-* Restrict where this project can be run: WindowsVM
+* Name: Test gpii-win-8.1
+* Restrict where this project can be run: gpii-win-8.1
 
 For build, use a Windows batch command:
 
@@ -126,9 +126,9 @@ powershell.exe -ExecutionPolicy RemoteSigned -File C:\Users\GPIITestUser\gpii-au
 Run the tests
 -------------
 
-* Prepare GPII Test Environment
-* Test GPII
-* Tear Down GPII Test Environment
+* Set Up gpii-win-8.1
+* Test gpii-win-8.1
+* Tear Down gpii-win-8.1
 
 TODO
 ----
