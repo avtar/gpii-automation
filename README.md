@@ -46,8 +46,8 @@ See https://github.com/WinRb/vagrant-windows
 ### Package the VM
 
 ```
-vagrant package --base NAME --output GPIIWin8.box
-vagrant box add GPIIWin8 GPIIWin8.box (optional)
+vagrant package --base NAME --output gpii-win-8.1.box
+vagrant box add gpii-win-8.1 gpii-win-8.1.box (optional)
 ```
 
 Set Up Jenkins
@@ -74,7 +74,7 @@ Add a new "Dumb Slave" node:
 
 Set the following environment variables:
 
-* GPIIWIN8_BOX_URL = \<URL to the GPIIWin8.box created above\>
+* GPII_WIN81_BOX_URL = \<URL to the gpii-win-8.1.box created above\>
 * GPII_JENKINS_MASTER_URL (such as http://1.2.3.4:8080/)
 * GPII_JENKINS_SLAVE_NAME = "WindowsVM"
 

@@ -1,7 +1,7 @@
 Set-PSDebug -Trace 2
 
 if (Test-Path gpii) {
-    rmdir -Recurse -Force gpii
+    rmdir gpii -Recurse -Force
 }
 
 # Use ASCII characters for the npm tree drawing
