@@ -27,4 +27,4 @@ cd ..
 cd windows
 node tests\acceptanceTests\AcceptanceTests_builtIn.js
 
-exit $LastExitCode
+exit $LASTEXITCODE

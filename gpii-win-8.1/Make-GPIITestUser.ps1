@@ -8,17 +8,26 @@ $testUserPassword = "password"
 
 $logonScriptName = "OnLogon-${testUserName}.bat"
 
+# *** NOTE ***
+# We are running the Jenkins Slave Agent with elevated privileges. This is a
+# workaround to enable the tests to run with elevated privileges. Elevated
+# privileges are required to kill the Magnifier process on Windows 8 when
+# using taskkill.exe. See:
+# http://issues.gpii.net/browse/GPII-899 and
+# http://issues.gpii.net/browse/GPII-12
+
 $logonScriptContents = @"
 %HOMEDRIVE%
 cd %HOMEPATH%
 git clone https://github.com/simonbates/gpii-automation
 "C:\Program Files (x86)\Git\bin\curl.exe" -O ${JenkinsMasterUrl}jnlpJars/slave.jar
-"C:\Program Files (x86)\Java\jre7\bin\java" -jar slave.jar -jnlpUrl ${JenkinsMasterUrl}computer/${JenkinsSlaveName}/slave-agent.jnlp
+powershell.exe -ExecutionPolicy RemoteSigned -File gpii-automation\gpii-win-8.1\StartElevated-JenkinsSlaveAgent.ps1 ${JenkinsMasterUrl}computer/${JenkinsSlaveName}/slave-agent.jnlp
 "@
 
 # Create our test user
 
 net user $testUserName $testUserPassword /add
+net localgroup Administrators $testUserName /add
 
 # Configure auto logon
 
