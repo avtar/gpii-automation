@@ -108,7 +108,6 @@ For build, use a Windows batch command:
 
 ```
 cd gpii-win-8.1
-vagrant halt
 vagrant destroy --force
 ```
 
