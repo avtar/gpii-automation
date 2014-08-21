@@ -1,6 +1,7 @@
 Set-PSDebug -Trace 2
 
-if (Test-Path gpii) {
+if (Test-Path gpii)
+{
     rmdir gpii -Recurse -Force
 }
 
