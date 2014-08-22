@@ -89,13 +89,12 @@ jenkins-jobs update jenkins
 Run the tests
 -------------
 
-* Set Up gpii-win-8.1
-* Test gpii-win-8.1
-* Tear Down gpii-win-8.1
+* set-up-gpii-win-8.1
+* test-gpii-win-8.1
+* tear-down-gpii-win-8.1
 
 TODO
 ----
 
 * Move everything that we can move to the provisioning script -- minimize what needs to be installed by hand
-* Use the Jenkins Job Builder to configure Jenkins
 * jqUnit-node.js.patch is a temporary hack -- the proper fix is to modify jqUnit-node.js to make color optional or only if running on a tty and hopefully https://github.com/joyent/node/issues/3584 is fixed on latest Nodejs
