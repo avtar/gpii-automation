@@ -1,0 +1,10 @@
+- job:
+    name: tear-down-gpii-win-8.1
+    project-type: freestyle
+    node: master
+    concurrent: false
+    workspace: gpii-automation
+    builders:
+        - batch: |
+            cd gpii-win-8.1
+            vagrant destroy --force

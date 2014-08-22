@@ -1,0 +1,14 @@
+- job:
+    name: set-up-gpii-win-8.1
+    project-type: freestyle
+    node: master
+    concurrent: false
+    workspace: gpii-automation
+    scm:
+        - git:
+            url: https://github.com/simonbates/gpii-automation.git
+    builders:
+        - batch: |
+            cd gpii-win-8.1
+            vagrant up
+            vagrant reload

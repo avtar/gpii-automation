@@ -78,50 +78,12 @@ Set the following environment variables:
 * GPII_JENKINS_MASTER_URL (such as http://1.2.3.4:8080/)
 * GPII_JENKINS_SLAVE_NAME = "gpii-win-8.1"
 
-### Add a "Set Up gpii-win-8.1" job
+### Configure Jenkins jobs with Jenkins Job Builder
 
-Add a "Build a free-style software project" job:
-
-* Name: Set Up gpii-win-8.1
-* Restrict where this project can be run: master
-* Use custom workspace: gpii-automation
-* Source Code Management: Git
-* Repository URL: https://github.com/simonbates/gpii-automation.git
-
-For build, use a Windows batch command:
+From the gpii-automation directory:
 
 ```
-cd gpii-win-8.1
-vagrant up
-vagrant reload
-```
-
-### Add a "Tear Down gpii-win-8.1" job
-
-Add a "Build a free-style software project" job:
-
-* Name: Tear Down gpii-win-8.1
-* Restrict where this project can be run: master
-* Use custom workspace: gpii-automation
-
-For build, use a Windows batch command:
-
-```
-cd gpii-win-8.1
-vagrant destroy --force
-```
-
-### Add a "Test gpii-win-8.1" job
-
-Add a "Build a free-style software project" job:
-
-* Name: Test gpii-win-8.1
-* Restrict where this project can be run: gpii-win-8.1
-
-For build, use a Windows batch command:
-
-```
-powershell.exe -ExecutionPolicy RemoteSigned -File C:\Users\GPIITestUser\gpii-automation\gpii-win-8.1\Test-GPII.ps1
+jenkins-jobs update jenkins
 ```
 
 Run the tests
