@@ -8,6 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.communicator = "winrm"
 
   config.vm.provider "virtualbox" do |vb|
+    v.customize ["modifyvm", :id, "--hardwareuuid", ENV['GPII_WIN81_BOX_HARDWAREUUID']]
     vb.gui = true
   end
 

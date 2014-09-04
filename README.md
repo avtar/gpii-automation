@@ -75,6 +75,7 @@ Add a new "Dumb Slave" node:
 Set the following environment variables:
 
 * GPII_WIN81_BOX_URL = \<URL to the gpii-win-8.1.box created above\>
+* GPII_WIN81_BOX_HARDWAREUUID
 * GPII_JENKINS_MASTER_URL (such as http://1.2.3.4:8080/)
 * GPII_JENKINS_SLAVE_NAME = "gpii-win-8.1"
 
