@@ -1,19 +1,11 @@
 Set-PSDebug -Trace 2
 
-if (Test-Path gpii)
-{
-    rmdir gpii -Recurse -Force
-}
-
 # Use ASCII characters for the npm tree drawing
 
 $env:npm_config_unicode = "false"
 
-# Clone and build GPII
+# Build GPII
 
-mkdir gpii
-cd gpii
-git clone https://github.com/GPII/windows.git
 cd windows
 npm install --ignore-scripts=true
 grunt --no-color build

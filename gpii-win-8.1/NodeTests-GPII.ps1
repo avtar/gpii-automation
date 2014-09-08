@@ -2,7 +2,7 @@ Set-PSDebug -Trace 2
 
 $exitCode = 0
 
-cd gpii\node_modules\universal
+cd node_modules\universal
 node tests\all-tests.js
 if (-not $?)
 {

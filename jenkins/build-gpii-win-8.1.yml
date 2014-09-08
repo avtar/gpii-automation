@@ -3,6 +3,11 @@
     project-type: freestyle
     node: gpii-win-8.1
     concurrent: false
+    workspace: gpii
+    scm:
+        - git:
+            url: https://github.com/GPII/windows.git
+            skip-tag: true
     builders:
         - batch: |
             powershell.exe -ExecutionPolicy RemoteSigned -File C:\Users\GPIITestUser\gpii-automation\gpii-win-8.1\Build-GPII.ps1

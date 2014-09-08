@@ -1,6 +1,6 @@
 - job:
     name: test-gpii-win-8.1
-    project-type: freestyle
+    project-type: multijob
     concurrent: false
     builders:
         - multijob:
