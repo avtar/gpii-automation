@@ -57,9 +57,10 @@ Set Up Jenkins
 
 Jenkins needs to be run as a user that can start VirtualBox with a GUI. On Windows, I'm running Jenkins from the command line as a logged-in user, rather than as a service.
 
-### Install the Git Plugin
+### Install Plugins
 
-* Install the Git Plugin
+* Git Plugin
+* Multijob Plugin
 
 ### Add a gpii-win-8.1 node
 
@@ -90,12 +91,4 @@ jenkins-jobs update jenkins
 Run the tests
 -------------
 
-* set-up-gpii-win-8.1
 * test-gpii-win-8.1
-* tear-down-gpii-win-8.1
-
-TODO
-----
-
-* Move everything that we can move to the provisioning script -- minimize what needs to be installed by hand
-* jqUnit-node.js.patch is a temporary hack -- the proper fix is to modify jqUnit-node.js to make color optional or only if running on a tty and hopefully https://github.com/joyent/node/issues/3584 is fixed on latest Nodejs

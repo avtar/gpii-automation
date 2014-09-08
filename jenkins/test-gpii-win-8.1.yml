@@ -1,8 +1,25 @@
 - job:
     name: test-gpii-win-8.1
     project-type: freestyle
-    node: gpii-win-8.1
     concurrent: false
     builders:
-        - batch: |
-            powershell.exe -ExecutionPolicy RemoteSigned -File C:\Users\GPIITestUser\gpii-automation\gpii-win-8.1\Test-GPII.ps1
+        - multijob:
+            name: set-up-gpii-win-8.1
+            condition: COMPLETED
+            projects:
+                - name: set-up-gpii-win-8.1
+        - multijob:
+            name: build-gpii-win-8.1
+            condition: COMPLETED
+            projects:
+                - name: build-gpii-win-8.1
+        - multijob:
+            name: node-tests-gpii-win-8.1
+            condition: COMPLETED
+            projects:
+                - name: node-tests-gpii-win-8.1
+        - multijob:
+            name: tear-down-gpii-win-8.1
+            condition: COMPLETED
+            projects:
+                - name: tear-down-gpii-win-8.1
