@@ -7,6 +7,7 @@
     scm:
         - git:
             url: https://github.com/simonbates/gpii-automation.git
+            skip-tag: true
     builders:
         - batch: |
             cd gpii-win-8.1
