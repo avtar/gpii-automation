@@ -16,6 +16,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell" do |s|
     s.path = "Make-GPIITestUser.ps1"
-    s.args = "#{ENV['GPII_JENKINS_MASTER_URL']} #{ENV['GPII_JENKINS_SLAVE_NAME']}"
+    s.args = "#{ENV['GPII_JENKINS_MASTER_URL']} #{ENV['GPII_JENKINS_SLAVE_NAME']} #{ENV['GPII_JENKINS_JNLP_CREDENTIALS']}"
   end
 end

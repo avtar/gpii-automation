@@ -1,6 +1,7 @@
 Param (
     [Parameter(Mandatory=$True)] [String]$JenkinsMasterUrl,
-    [Parameter(Mandatory=$True)] [String]$JenkinsSlaveName
+    [Parameter(Mandatory=$True)] [String]$JenkinsSlaveName,
+    [Parameter(Mandatory=$True)] [String]$JenkinsJnlpCredentials
 )
 
 $testUserName = "GPIITestUser"
@@ -21,7 +22,7 @@ $logonScriptContents = @"
 cd %HOMEPATH%
 git clone https://github.com/simonbates/gpii-automation
 "C:\Program Files (x86)\Git\bin\curl.exe" -O ${JenkinsMasterUrl}jnlpJars/slave.jar
-powershell.exe -ExecutionPolicy RemoteSigned -File gpii-automation\gpii-win-8.1\StartElevated-JenkinsSlaveAgent.ps1 ${JenkinsMasterUrl}computer/${JenkinsSlaveName}/slave-agent.jnlp
+powershell.exe -ExecutionPolicy RemoteSigned -File gpii-automation\gpii-win-8.1\StartElevated-JenkinsSlaveAgent.ps1 ${JenkinsMasterUrl}computer/${JenkinsSlaveName}/slave-agent.jnlp ${JenkinsJnlpCredentials}
 "@
 
 # Create our test user

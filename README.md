@@ -71,6 +71,13 @@ Add a new "Dumb Slave" node:
 * Usage: Leave this node for tied jobs only
 * Launch method: Launce slave agents via Java Web Start
 
+### Configure security
+
+Enable security and configure:
+
+* An admin user
+* Anonymous users get a read only view
+
 ### Environment variables
 
 Set the following environment variables:
@@ -79,6 +86,7 @@ Set the following environment variables:
 * GPII_WIN81_BOX_HARDWAREUUID
 * GPII_JENKINS_MASTER_URL (such as http://1.2.3.4:8080/)
 * GPII_JENKINS_SLAVE_NAME = "gpii-win-8.1"
+* GPII_JENKINS_JNLP_CREDENTIALS = credentials for a user with access to connect from the slave
 
 ### Configure Jenkins jobs with Jenkins Job Builder
 
