@@ -3,8 +3,6 @@
     project-type: freestyle
     node: master
     concurrent: false
-    workspace: gpii-automation
     builders:
         - batch: |
-            cd gpii-win-8.1
-            vagrant destroy --force
+            ssh -l %GPII_WIN81_ADMIN_USER% %GPII_WIN81_COMPUTER_NAME% powershell.exe -Command Restore-Computer -RestorePoint %GPII_WIN81_RESTORE_POINT%

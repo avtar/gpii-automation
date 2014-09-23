@@ -5,12 +5,12 @@ Run the GPII automated tests in a virtual machine.
 
 Tested against Windows 8.1 64-bit in VirtualBox running on a Windows 7 host with PowerShell 4.
 
-Prepare a Vagrant VirtualBox base box
--------------------------------------
+Prepare a Windows VM
+--------------------
 
 ### Manual Steps
 
-Set up a VirtualBox Windows VM:
+Set up a Windows VM:
 
 * Create a vagrant user
   * An Administrator
@@ -43,12 +43,9 @@ See https://github.com/WinRb/vagrant-windows
 
 * Edit the Firewall rules to allow "Windows Remote Management" on Public networks
 
-### Package the VM
+### Configure OpenSSH
 
-```
-vagrant package --base NAME --output gpii-win-8.1.box
-vagrant box add gpii-win-8.1 gpii-win-8.1.box (optional)
-```
+* Configure OpenSSH
 
 Set Up Jenkins
 --------------
@@ -67,6 +64,7 @@ Jenkins needs to be run as a user that can start VirtualBox with a GUI. On Windo
 Add a new "Dumb Slave" node:
 
 * Name: gpii-win-8.1
+* # of executors: 1
 * Remote root directory: C:\Jenkins
 * Usage: Leave this node for tied jobs only
 * Launch method: Launce slave agents via Java Web Start
@@ -82,8 +80,9 @@ Enable security and configure:
 
 Set the following environment variables:
 
-* GPII_WIN81_BOX_URL = \<URL to the gpii-win-8.1.box created above\>
-* GPII_WIN81_BOX_HARDWAREUUID
+* GPII_WIN81_COMPUTER_NAME
+* GPII_WIN81_ADMIN_USER
+* GPII_WIN81_RESTORE_POINT
 * GPII_JENKINS_MASTER_URL (such as http://1.2.3.4:8080/)
 * GPII_JENKINS_SLAVE_NAME = "gpii-win-8.1"
 * GPII_JENKINS_JNLP_CREDENTIALS = credentials for a user with access to connect from the slave

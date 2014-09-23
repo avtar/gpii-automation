@@ -6,6 +6,7 @@ $env:npm_config_unicode = "false"
 
 # Build GPII
 
+rmdir node_modules -Recurse -Force
 cd windows
 npm install --ignore-scripts=true
 grunt --no-color build

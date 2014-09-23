@@ -3,13 +3,13 @@
     project-type: freestyle
     node: master
     concurrent: false
-    workspace: gpii-automation
     scm:
         - git:
             url: https://github.com/simonbates/gpii-automation.git
             skip-tag: true
     builders:
         - batch: |
-            cd gpii-win-8.1
-            vagrant up
-            vagrant reload
+            scp -r gpii-win-8.1 %GPII_WIN81_ADMIN_USER%@%GPII_WIN81_COMPUTER_NAME%:C:/Users/%GPII_WIN81_ADMIN_USER%
+            ssh -l %GPII_WIN81_ADMIN_USER% %GPII_WIN81_COMPUTER_NAME% powershell.exe -ExecutionPolicy RemoteSigned -File gpii-win-8.1\\\\Provision-WinVM.ps1
+            ssh -l %GPII_WIN81_ADMIN_USER% %GPII_WIN81_COMPUTER_NAME% powershell.exe -ExecutionPolicy RemoteSigned -File gpii-win-8.1\\\\Make-GPIITestUser.ps1 %GPII_JENKINS_MASTER_URL% %GPII_JENKINS_SLAVE_NAME% %GPII_JENKINS_JNLP_CREDENTIALS%
+            ssh -l %GPII_WIN81_ADMIN_USER% %GPII_WIN81_COMPUTER_NAME% powershell.exe -Command Restart-Computer -Force
