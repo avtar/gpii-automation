@@ -12,4 +12,5 @@
             scp -r gpii-win-8.1 %GPII_WIN81_ADMIN_USER%@%GPII_WIN81_COMPUTER_NAME%:C:/Users/%GPII_WIN81_ADMIN_USER%
             ssh -l %GPII_WIN81_ADMIN_USER% %GPII_WIN81_COMPUTER_NAME% powershell.exe -ExecutionPolicy RemoteSigned -File gpii-win-8.1\\\\Provision-WinVM.ps1
             ssh -l %GPII_WIN81_ADMIN_USER% %GPII_WIN81_COMPUTER_NAME% powershell.exe -ExecutionPolicy RemoteSigned -File gpii-win-8.1\\\\Make-GPIITestUser.ps1 %GPII_JENKINS_MASTER_URL% %GPII_JENKINS_SLAVE_NAME% %GPII_JENKINS_JNLP_CREDENTIALS%
+            ssh -l %GPII_WIN81_ADMIN_USER% %GPII_WIN81_COMPUTER_NAME% powershell.exe -Command Remove-Item -Path C:\\\\Jenkins\\\\gpii -Recurse -Force -ErrorAction Ignore
             ssh -l %GPII_WIN81_ADMIN_USER% %GPII_WIN81_COMPUTER_NAME% powershell.exe -Command Restart-Computer -Force

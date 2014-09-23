@@ -3,7 +3,7 @@
     project-type: freestyle
     node: gpii-win-8.1
     concurrent: false
-    workspace: workspace\build-gpii-win-8.1
+    workspace: gpii
     builders:
         - batch: |
             powershell.exe -ExecutionPolicy RemoteSigned -File %HOMEDRIVE%%HOMEPATH%\gpii-automation\gpii-win-8.1\NodeTests-GPII.ps1
