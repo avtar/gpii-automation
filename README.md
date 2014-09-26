@@ -19,7 +19,7 @@ Set up a Windows VM:
 * Disable UAC for the vagrant user
 * `Enable-PSRemoting -Force`
 * Install Git
-* Install Nodejs 0.8.25
+* Install Nodejs 0.8.25 32-bit
 * Update npm to version 1.4
 * Install grunt-cli
 * Install MinGW
