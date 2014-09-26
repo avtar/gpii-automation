@@ -58,6 +58,7 @@ Jenkins needs to be run as a user that can start VirtualBox with a GUI. On Windo
 
 * Git Plugin
 * Multijob Plugin
+* Groovy Plugin
 
 ### Add a gpii-win-8.1 node
 

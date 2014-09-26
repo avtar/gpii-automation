@@ -38,6 +38,6 @@ reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v DefaultP
 
 # Set up the logon script
 
-New-Item -ItemType directory -Force C:\Windows\System32\Repl\Import\Scripts
+New-Item C:\Windows\System32\Repl\Import\Scripts -ItemType directory -Force
 Out-File -FilePath "C:\Windows\System32\Repl\Import\Scripts\$logonScriptName" -Encoding ASCII -InputObject $logonScriptContents
 net user $testUserName /scriptpath:$logonScriptName
