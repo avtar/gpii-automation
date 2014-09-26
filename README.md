@@ -19,11 +19,11 @@ Set up a Windows VM:
 * Disable UAC for the vagrant user
 * `Enable-PSRemoting -Force`
 * Install Git
-* Install Nodejs
+* Install Nodejs 0.8.25
 * Update npm to version 1.4
 * Install grunt-cli
 * Install MinGW
-* Install the Microsoft Visual C++ Redistributable Package (x86)
+* Install the Microsoft Visual C++ 2010 Redistributable Package (x86)
 * Install Java JRE 7
 
 ### Configure WinRM for Vagrant

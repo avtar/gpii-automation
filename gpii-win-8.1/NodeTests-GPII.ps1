@@ -1,5 +1,3 @@
-Set-PSDebug -Trace 2
-
 $exitCode = 0
 
 cd node_modules\universal

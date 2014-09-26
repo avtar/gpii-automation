@@ -1,5 +1,3 @@
-Set-PSDebug -Trace 2
-
 # Use ASCII characters for the npm tree drawing
 
 $env:npm_config_unicode = "false"
