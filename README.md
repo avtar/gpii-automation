@@ -30,7 +30,7 @@ The OpenSSH service for Windows can be downloaded from:
 
 Configure OpenSSH:
 
-* Publickey authentication will not work with the default setup of running the OpenSSH Server as a system user (seteuid error); the easiest fix is to change the OpenSSH Server service to run as the user we want to log in as -- see cygwin.com/cygwin-ug-net/ntsec.html section "Switching the user context without password" for a discussion of the issue
+* Publickey authentication will not work with the default setup of running the OpenSSH Server as a system user (seteuid error); the easiest fix is to change the OpenSSH Server service to run as the user we want to log in as -- see https://cygwin.com/cygwin-ug-net/ntsec.html section "Switching the user context without password" for a discussion of the issue
 * To use publickey authentication, add the public key to ~/.ssh/authorized_keys
 * Edit /etc/sshd_config:
 
