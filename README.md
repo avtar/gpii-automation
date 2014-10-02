@@ -8,17 +8,17 @@ Tested against Windows 8.1 64-bit in VirtualBox running on a Windows 7 host with
 Prepare a Windows VM
 --------------------
 
-### Manual Steps
+### Install software
 
-Set up a Windows VM:
+Install the following dependencies:
 
-* Install Git
-* Install Nodejs 0.8.25 32-bit
+* Git
+* Nodejs 0.8.25 32-bit
 * Update npm to version 1.4
-* Install grunt-cli
-* Install MinGW
-* Install the Microsoft Visual C++ 2010 Redistributable Package (x86)
-* Install Java JRE 7
+* grunt-cli
+* MinGW
+* Microsoft Visual C++ 2010 Redistributable Package (x86)
+* Java JRE 7
 
 ### Install and configure OpenSSH
 
@@ -40,7 +40,7 @@ PubkeyAuthentication yes
 PasswordAuthentication no
 ```
 
-### Increase the storage limit for Restore Points
+### Increase the disk space limit for Restore Points
 
 Windows has a limit on the amount of disk space used by restore points. If the limit is exceeded, restore points will be deleted. Windows will sometimes create Restore Points automatically and if a new Restore Point pushes the disk space used over the limit, we will lose our manually created Restore Point (discussed below).
 
