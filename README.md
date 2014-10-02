@@ -12,12 +12,6 @@ Prepare a Windows VM
 
 Set up a Windows VM:
 
-* Create a vagrant user
-  * An Administrator
-  * username: vagrant
-  * password: vagrant
-* Disable UAC for the vagrant user
-* `Enable-PSRemoting -Force`
 * Install Git
 * Install Nodejs 0.8.25 32-bit
 * Update npm to version 1.4
@@ -26,33 +20,47 @@ Set up a Windows VM:
 * Install the Microsoft Visual C++ 2010 Redistributable Package (x86)
 * Install Java JRE 7
 
-### Configure WinRM for Vagrant
+### Install and configure OpenSSH
+
+The following configuration is based on the one used by https://github.com/joefitzgerald/packer-windows/blob/master/scripts/openssh.ps1
+
+The OpenSSH service for Windows can be downloaded from:
+
+* http://www.mls-software.com/opensshd.html
+
+Configure OpenSSH:
+
+* Publickey authentication will not work with the default setup of running the OpenSSH Server as a system user (seteuid error); the easiest fix is to change the OpenSSH Server service to run as the user we want to log in as -- see cygwin.com/cygwin-ug-net/ntsec.html section "Switching the user context without password" for a discussion of the issue
+* To use publickey authentication, add the public key to ~/.ssh/authorized_keys
+* Edit /etc/sshd_config:
 
 ```
-winrm quickconfig -q
-winrm set winrm/config/winrs @{MaxMemoryPerShellMB="512"}
-winrm set winrm/config @{MaxTimeoutms="1800000"}
-winrm set winrm/config/service @{AllowUnencrypted="true"}
-winrm set winrm/config/service/auth @{Basic="true"}
-sc config WinRM start= auto
+StrictModes no
+PubkeyAuthentication yes
+PasswordAuthentication no
 ```
 
-See https://github.com/WinRb/vagrant-windows
+### Increase the storage limit for Restore Points
 
-### Edit the Firewall
+Windows has a limit on the amount of disk space used by restore points. If the limit is exceeded, restore points will be deleted. Windows will sometimes create Restore Points automatically and if a new Restore Point pushes the disk space used over the limit, we will lose our manually created Restore Point (discussed below).
 
-* Edit the Firewall rules to allow "Windows Remote Management" on Public networks
+Through the GUI, this can be done with the following:
 
-### Configure OpenSSH
+* System control panel
+* Open System Protection
+* Click Configure
+* Adjust the Max Usage
 
-* Configure OpenSSH
+### Make a Restore Point
+
+Create a Restore Point and make a note of its number. We will use this Restore Point at the end of the build to reset the machine back to this known state. The Restore Point number can be retrieved using the following PowerShell command (run as Administrator):
+
+```
+Get-ComputerRestorePoint
+```
 
 Set Up Jenkins
 --------------
-
-### Running Jenkins
-
-Jenkins needs to be run as a user that can start VirtualBox with a GUI. On Windows, I'm running Jenkins from the command line as a logged-in user, rather than as a service.
 
 ### Install Plugins
 
