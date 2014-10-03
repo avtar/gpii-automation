@@ -14,11 +14,22 @@ Install the following dependencies:
 
 * Git
 * Nodejs 0.8.25 32-bit
-* Update npm to version 1.4
-* grunt-cli
 * MinGW
 * Microsoft Visual C++ 2010 Redistributable Package (x86)
 * Java JRE 7
+
+### Update npm to version 1.4 and install grunt-cli
+
+With Nodejs 0.8.25 installed:
+
+* Delete the npm that comes with that version of Node
+    * C:\Program Files (x86)\nodejs\npm
+    * C:\Program Files (x86)\nodejs\npm.cmd
+    * C:\Program Files (x86)\nodejs\node_modules\npm
+* Grab npm 1.4.9 from http://nodejs.org/dist/npm/
+* Copy the npm 1.4.9 files into C:\Program Files (x86)\nodejs
+* Now we have a working recent npm and we can use npm to update itself: npm install -g npm (need to run as an Administrator)
+* npm install -g grunt-cli
 
 ### Install and configure OpenSSH
 
