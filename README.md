@@ -18,7 +18,7 @@ Install the following dependencies:
 * Microsoft Visual C++ 2010 Redistributable Package (x86)
 * Java JRE 7
 
-### Update npm to version 1.4 and install grunt-cli
+### Update npm to version 1.4 or higher and install grunt-cli
 
 With Nodejs 0.8.25 installed:
 
@@ -26,10 +26,10 @@ With Nodejs 0.8.25 installed:
     * C:\Program Files (x86)\nodejs\npm
     * C:\Program Files (x86)\nodejs\npm.cmd
     * C:\Program Files (x86)\nodejs\node_modules\npm
-* Grab npm 1.4.9 from http://nodejs.org/dist/npm/
+* Grab npm-1.4.9.zip from http://nodejs.org/dist/npm/
 * Copy the npm 1.4.9 files into C:\Program Files (x86)\nodejs
 * Now we have a working recent npm and we can use npm to update itself: npm install -g npm (need to run as an Administrator)
-* npm install -g grunt-cli
+* npm install -g grunt-cli (run as an Administrator)
 
 ### Install and configure OpenSSH
 
@@ -60,7 +60,7 @@ Through the GUI, this can be done with the following:
 * System control panel
 * Open System Protection
 * Click Configure
-* Adjust the Max Usage
+* Adjust the Max Usage to 10 GB
 
 ### Make a Restore Point
 
@@ -107,9 +107,31 @@ Set the following environment variables:
 * GPII_JENKINS_SLAVE_NAME = "gpii-win-8.1"
 * GPII_JENKINS_JNLP_CREDENTIALS = credentials for a user with access to connect from the slave
 
+### Configure publickey ssh login from the Jenkins machine to the Windows VM
+
+On the Jenkins machine, add the Windows VM keypair to ~/.ssh directory of the user running the Jenkins service. And create a ~/.ssh/config file to specify that the keypair be used when connecting to the Windows VM.
+
 ### Configure Jenkins jobs with Jenkins Job Builder
 
-From the gpii-automation directory:
+Install the Jenkins Job Builder and upgrade six with pip:
+
+```
+sudo pip install jenkins-job-builder
+sudo pip install --upgrade six
+```
+
+Create a Jenkins Job Builder configuration file at: `/etc/jenkins_jobs/jenkins_jobs.ini`:
+
+```
+[jenkins]
+user=JENKINS_ADMIN_USER
+password=JENKINS_ADMIN_API_TOKEN
+url=http://localhost:8080/
+```
+
+The JENKINS_ADMIN_API_TOKEN can be retrieved through the Jenkins GUI: People page, click on the user, go to Configure, and click "Show API Token".
+
+Run the Jenkins Job Builder in the gpii-automation directory:
 
 ```
 jenkins-jobs update jenkins
