@@ -4,5 +4,5 @@
     node: master
     concurrent: false
     builders:
-        - batch: |
-            ssh -o LogLevel=ERROR -l %GPII_WIN81_ADMIN_USER% %GPII_WIN81_COMPUTER_NAME% powershell.exe -Command Restore-Computer -RestorePoint %GPII_WIN81_RESTORE_POINT%
+        - shell: |
+            ssh -o LogLevel=ERROR -l $GPII_WIN81_ADMIN_USER $GPII_WIN81_COMPUTER_NAME powershell.exe -Command Restore-Computer -RestorePoint $GPII_WIN81_RESTORE_POINT
