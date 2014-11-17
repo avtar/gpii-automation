@@ -21,7 +21,7 @@ $logonScriptContents = @"
 %HOMEDRIVE%
 cd %HOMEPATH%
 git clone https://github.com/simonbates/gpii-automation
-"C:\Program Files (x86)\Git\bin\curl.exe" -O ${JenkinsMasterUrl}jnlpJars/slave.jar
+"C:\ProgramData\chocolatey\bin\curl.exe" -O ${JenkinsMasterUrl}jnlpJars/slave.jar
 powershell.exe -ExecutionPolicy RemoteSigned -File gpii-automation\gpii-win-8.1\StartElevated-JenkinsSlaveAgent.ps1 ${JenkinsMasterUrl}computer/${JenkinsSlaveName}/slave-agent.jnlp ${JenkinsJnlpCredentials}
 "@
 
