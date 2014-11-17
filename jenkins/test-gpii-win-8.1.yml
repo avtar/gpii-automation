@@ -4,11 +4,6 @@
     concurrent: false
     builders:
         - multijob:
-            name: check-vm-gpii-win-8.1
-            condition: SUCCESSFUL
-            projects:
-                - name: check-vm-gpii-win-8.1
-        - multijob:
             name: set-up-gpii-win-8.1
             condition: COMPLETED
             projects:
