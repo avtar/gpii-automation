@@ -6,7 +6,7 @@ $env:npm_config_unicode = "false"
 
 cd windows
 npm install --ignore-scripts=true
-grunt --no-color build
+C:\ProgramData\chocolatey\lib\nodejs.commandline.0.10.33\tools\grunt --no-color build
 cd ..
 
 # Patch jqUnit-node.js
