@@ -8,7 +8,7 @@ if (-not $?)
 }
 
 cd ..\..\windows
-node tests\acceptanceTests\AcceptanceTests_builtIn.js
+node tests\AcceptanceTests.js
 if (-not $?)
 {
     $exitCode = 1
